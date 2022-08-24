@@ -20,21 +20,11 @@ void setup() {
   //playWinner(12);
 }
 
-void playWinner(int pin){
-  digitalWrite(13, LOW);
-  digitalWrite(12, LOW);
-  digitalWrite(11, LOW);
-  digitalWrite(10, LOW);
-  digitalWrite(9, LOW);
-
-  digitalWrite(pin, HIGH);
-  delay(7000);
-}
 
 int led_button_pin_number[4] = {5, 6, 7, 8};
 int led_pin_number[4] = {10, 11, 12, 13};
-int led_status[4] = {0, 0, 0, 0};
 int reset_button_pin_number = 4;
+
 int led_button_status[4] = {0, 0, 0, 0};
 
 void reset(){
@@ -51,9 +41,9 @@ void show_status(){
 }
 
 void loop() {
-   int sv5 = digitalRead(4);
+   int sv5 = digitalRead(reset_button_pin_number);
 
-   int reset_button_status = sv5 == HIGH ? 0 : 1;
+   int reset_button_status = (sv5 == HIGH) ? 0 : 1;
    if (reset_button_status) {
      reset();
      return;
